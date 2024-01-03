@@ -23,11 +23,13 @@ type
     FSettingsFile: TCustomIniFile;
     FSenderObject: TSenderObject;
     FRadioItemsIndex: Integer;
+    FChkBx1_checked: Boolean;
   public
     property SaveFolder: String read FSaveFolder;
     property SettingsFile: TCustomIniFile read FSettingsFile;
     property SenderObject: TSenderObject read FSenderObject write FSenderObject;
     property RadioItemsIndex: Integer read FRadioItemsIndex write FRadioItemsIndex;
+    property ChkBx1_checked: Boolean read FChkBx1_checked write FChkBx1_checked;
 
     procedure Save(Sender: TObject);
     procedure Load(Sender: TObject);
@@ -48,7 +50,8 @@ begin
   inherited Create;
   FSettingsFile:= TMemIniFile.Create(ChangeFileExt(Application.ExeName, '.INI'));
   SenderObject:= soNil;
-  FRadioItemsIndex:= -1;
+  FRadioItemsIndex:= 0;
+  FChkBx1_checked:= False;
 end;
 
 destructor TSettings.Destroy;
@@ -73,7 +76,8 @@ begin
     Height  := SettingsFile.ReadInteger(Name, 'Height', Height );
     Caption := SettingsFile.ReadString (Name, 'Caption', Caption);
 
-    FRadioItemsIndex:= SettingsFile.ReadInteger(Name, 'RadioItemsIndex', RadioItemsIndex);
+    FChkBx1_checked:= SettingsFile.ReadBool(Name, 'ChkBx1_checked', ChkBx1_checked);//Form2
+    FRadioItemsIndex:= SettingsFile.ReadInteger(Name, 'RadioItemsIndex', RadioItemsIndex);//Form3
 
     case SettingsFile.ReadBool(Name, 'InitMax', WindowState = wsMaximized) of
       true : WindowState := wsMaximized;
@@ -97,7 +101,8 @@ begin
       SettingsFile.WriteString  (Name, 'Caption', Caption);
       SettingsFile.WriteBool    (Name, 'InitMax', WindowState = wsMaximized );
       SettingsFile.WriteDateTime(Name, 'LastRun', Now);
-      SettingsFile.WriteInteger(Name, 'RadioItemsIndex', RadioItemsIndex);
+      SettingsFile.WriteBool    (Name, 'ChkBx1_checked', ChkBx1_checked);//Form2
+      SettingsFile.WriteInteger (Name, 'RadioItemsIndex', RadioItemsIndex);//Form3
     end;
   finally
     SettingsFile.UpdateFile;

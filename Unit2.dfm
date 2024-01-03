@@ -2,8 +2,8 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 210
-  ClientWidth = 384
+  ClientHeight = 209
+  ClientWidth = 380
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,7 +11,6 @@ object Form2: TForm2
   Font.Name = 'Segoe UI'
   Font.Style = []
   OnClose = FormClose
-  OnResize = FormResize
   OnShow = FormShow
   TextHeight = 15
   object CheckBox1: TCheckBox

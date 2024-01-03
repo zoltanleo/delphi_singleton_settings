@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Actions, Vcl.ActnList
-  , System.IniFiles, Arm.Settings, Vcl.StdCtrls
+  , System.IniFiles
+//  , Arm.Settings
+  , Vcl.StdCtrls
+  , Arm.Settings.Common
   ;
 
 type
@@ -19,7 +22,6 @@ type
     procedure actLoadExecute(Sender: TObject);
     procedure actSaveExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure FormResize(Sender: TObject);
   private
     FSenderObject: TSenderObject;
     { Private declarations }
@@ -84,18 +86,16 @@ end;
 
 procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  SaveSettings(Sender);
-end;
-
-procedure TForm2.FormResize(Sender: TObject);
-begin
-  Arm.Settings.SenderObject:= soForm2;
-  SaveSettings(Sender);
+//  SaveSettings(Sender);
+  Settings.ChkBx1_checked:= CheckBox1.Checked;
+  Settings.Save(Self);
 end;
 
 procedure TForm2.FormShow(Sender: TObject);
 begin
-  actLoadExecute(Sender);
+//  actLoadExecute(Sender);
+  Settings.Load(Self);
+  CheckBox1.Checked:= Settings.ChkBx1_checked;
 end;
 
 end.
