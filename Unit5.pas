@@ -14,7 +14,6 @@ type
     Edit1: TEdit;
     RadioGroup1: TRadioGroup;
     procedure FormShow(Sender: TObject);
-    procedure FormResize(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FRadioItemsIndex: Integer;
@@ -32,13 +31,6 @@ implementation
 {$R *.dfm}
 
 procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Settings.SenderObject:= soForm3;
-  Settings.RadioItemsIndex:= RadioGroup1.ItemIndex;
-  Settings.Save(Self);
-end;
-
-procedure TForm3.FormResize(Sender: TObject);
 begin
   Settings.SenderObject:= soForm3;
   Settings.RadioItemsIndex:= RadioGroup1.ItemIndex;

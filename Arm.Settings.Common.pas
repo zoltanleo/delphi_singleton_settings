@@ -48,7 +48,7 @@ begin
   inherited Create;
   FSettingsFile:= TMemIniFile.Create(ChangeFileExt(Application.ExeName, '.INI'));
   SenderObject:= soNil;
-  FRadioItemsIndex:= 0;
+  FRadioItemsIndex:= -1;
 end;
 
 destructor TSettings.Destroy;

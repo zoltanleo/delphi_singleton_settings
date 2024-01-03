@@ -11,7 +11,6 @@ object Form3: TForm3
   Font.Name = 'Segoe UI'
   Font.Style = []
   OnClose = FormClose
-  OnResize = FormResize
   OnShow = FormShow
   TextHeight = 15
   object Edit1: TEdit
